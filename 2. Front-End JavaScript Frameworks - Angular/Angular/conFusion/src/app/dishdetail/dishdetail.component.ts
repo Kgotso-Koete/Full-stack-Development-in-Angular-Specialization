@@ -19,6 +19,7 @@ import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 export class DishdetailComponent implements OnInit {
   dish: Dish;
   dishIds: string[];
+  dishcopy: Dish;
   prev: string;
   next: string;
   errMess: string;
@@ -65,6 +66,7 @@ export class DishdetailComponent implements OnInit {
       .subscribe(
         dish => {
           this.dish = dish;
+          this.dishcopy = dish;
           this.setPrevNext(dish.id);
         },
         errmess => (this.errMess = <any>errmess)
@@ -129,7 +131,19 @@ export class DishdetailComponent implements OnInit {
     this.feedback.date = n;
     console.log(this.feedback);
     // add new comment to dish comments temporarily
-    this.dish.comments.push(this.feedback);
+    this.dishcopy.comments.push(this.feedback);
+    this.dishservice.putDish(this.dishcopy).subscribe(
+      dish => {
+        this.dish = dish;
+        this.dishcopy = dish;
+      },
+      errmess => {
+        this.dish = null;
+        this.dishcopy = null;
+        this.errMess = <any>errmess;
+      }
+    );
+
     // reset the form
     this.feedbackForm.reset({
       rating: 5,
