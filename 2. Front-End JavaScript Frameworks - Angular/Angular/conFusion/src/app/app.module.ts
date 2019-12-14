@@ -26,6 +26,7 @@ import { HttpClientModule } from "@angular/common/http";
 import { DishService } from "./services/dish.service";
 import { PromotionService } from "./services/promotion.service";
 import { LeaderService } from "./services/leader.service";
+import { ProcessHTTPMsgService } from "./services/process-httpmsg.service";
 // Custom components
 import { AppComponent } from "./app.component";
 import { MenuComponent } from "./menu/menu.component";
@@ -79,6 +80,7 @@ import { baseURL } from "./shared/baseurl";
     DishService,
     PromotionService,
     LeaderService,
+    ProcessHTTPMsgService,
     { provide: "BaseURL", useValue: baseURL }
   ],
   entryComponents: [LoginComponent],

@@ -21,6 +21,7 @@ export class DishdetailComponent implements OnInit {
   dishIds: string[];
   prev: string;
   next: string;
+  errMess: string;
 
   // for comment form data
   feedbackForm: FormGroup;
@@ -35,13 +36,10 @@ export class DishdetailComponent implements OnInit {
   validationMessages = {
     author: {
       required: "Name is required.",
-      minlength: "Name must be at least 2 characters long.",
-      maxlength: "Name cannot be more than 25 characters long."
+      minlength: "Name must be at least 2 characters long."
     },
     comment: {
-      required: "Comment is required.",
-      minlength: "Comment must be at least 2 characters long.",
-      maxlength: "Comment cannot be more than 25 characters long."
+      required: "Comment is required."
     }
   };
 
@@ -56,17 +54,21 @@ export class DishdetailComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.dishservice
-      .getDishIds()
-      .subscribe(dishIds => (this.dishIds = dishIds));
+    this.dishservice.getDishIds().subscribe(
+      dishIds => (this.dishIds = dishIds),
+      errmess => (this.errMess = <any>errmess)
+    );
     this.route.params
       .pipe(
         switchMap((params: Params) => this.dishservice.getDish(params["id"]))
       )
-      .subscribe(dish => {
-        this.dish = dish;
-        this.setPrevNext(dish.id);
-      });
+      .subscribe(
+        dish => {
+          this.dish = dish;
+          this.setPrevNext(dish.id);
+        },
+        errmess => (this.errMess = <any>errmess)
+      );
   }
 
   setPrevNext(dishId: string) {
