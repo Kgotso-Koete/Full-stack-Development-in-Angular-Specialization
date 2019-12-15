@@ -224,5 +224,66 @@
       "description": "Award winning three-star Michelin chef with wide International experience having worked closely with whos-who in the culinary world, he specializes in creating mouthwatering Indo-Italian fusion experiences. He says, Put together the cuisines from the two craziest cultures, and you get a winning hit! Amma Mia!"
     }
   ],
-  "feedback": []
+  "feedback": [
+    {
+      "firstname": "Kgotso",
+      "lastname": "Koete",
+      "telnum": "123",
+      "email": "kgkoete@gmail.com",
+      "agree": true,
+      "contacttype": "Email",
+      "message": "Lovely food!",
+      "id": 1
+    },
+    {
+      "firstname": "Optimus",
+      "lastname": "Prime",
+      "telnum": "123",
+      "email": "Optimus@transformers.com",
+      "agree": true,
+      "contacttype": "Tel",
+      "message": "Autobots get in formation",
+      "id": 2
+    },
+    {
+      "firstname": "Kgotso",
+      "lastname": "Koete",
+      "telnum": "123",
+      "email": "kgkoete@gmail.com",
+      "agree": true,
+      "contacttype": "None",
+      "message": "",
+      "id": 3
+    },
+    {
+      "firstname": "Bayonetta",
+      "lastname": "Umbra",
+      "telnum": "123",
+      "email": "bayonetta@umbra.com",
+      "agree": true,
+      "contacttype": "Tel",
+      "message": "Abra cadabra",
+      "id": 4
+    },
+    {
+      "firstname": "Kgotso",
+      "lastname": "Koete",
+      "telnum": "123",
+      "email": "kgkoete@gmail.com",
+      "agree": true,
+      "contacttype": "None",
+      "message": "C",
+      "id": 5
+    },
+    {
+      "firstname": "Kgotso",
+      "lastname": "Koete",
+      "telnum": "1234",
+      "email": "kgkoete@gmail.com",
+      "agree": true,
+      "contacttype": "Email",
+      "message": "Finally!",
+      "id": 6
+    }
+  ]
 }

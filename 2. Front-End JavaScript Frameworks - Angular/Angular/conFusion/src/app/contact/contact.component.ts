@@ -1,7 +1,11 @@
+// by Kgotso Koete
+
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { Feedback, ContactType } from "../shared/feedback";
 import { Component, OnInit, ViewChild } from "@angular/core";
-import { flyInOut } from "../animations/app.animation";
+import { flyInOut, expand } from "../animations/app.animation";
+import { FeedbackService } from "../services/feedback.service";
+import { Subscription } from "rxjs";
 
 @Component({
   selector: "app-contact",
@@ -11,13 +15,17 @@ import { flyInOut } from "../animations/app.animation";
     "[@flyInOut]": "true",
     style: "display: block;"
   },
-  animations: [flyInOut()]
+  animations: [flyInOut(), expand()]
 })
 export class ContactComponent implements OnInit {
   feedbackForm: FormGroup;
   feedback: Feedback;
+  sentFeedback: Feedback;
   contactType = ContactType;
   @ViewChild("fform") feedbackFormDirective;
+  feedbackCopy: Feedback;
+  errMess: string;
+  subscription: Subscription;
 
   formErrors = {
     firstname: "",
@@ -47,7 +55,10 @@ export class ContactComponent implements OnInit {
     }
   };
 
-  constructor(private fb: FormBuilder) {
+  constructor(
+    private feedbackservice: FeedbackService,
+    private fb: FormBuilder
+  ) {
     this.createForm();
   }
 
@@ -102,6 +113,27 @@ export class ContactComponent implements OnInit {
   onSubmit() {
     this.feedback = this.feedbackForm.value;
     console.log(this.feedback);
+    // add new comment to dish comments temporarily
+    this.feedbackCopy = this.feedback;
+    this.subscription = this.feedbackservice
+      .submitFeedback(this.feedbackCopy)
+      .subscribe(
+        feedback_ => {
+          this.feedback = feedback_;
+          this.feedbackCopy = feedback_;
+          this.sentFeedback = feedback_;
+          setTimeout(() => {
+            this.sentFeedback = null;
+            this.feedbackCopy = null;
+          }, 5000);
+        },
+        errmess => {
+          this.feedback = null;
+          this.feedbackCopy = null;
+          this.errMess = <any>errmess;
+        }
+      );
+
     this.feedbackForm.reset({
       firstname: "",
       lastname: "",
