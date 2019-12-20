@@ -2,11 +2,12 @@ import { Component, ViewChild } from "@angular/core";
 import { Nav, Platform } from "ionic-angular";
 import { StatusBar } from "@ionic-native/status-bar";
 import { SplashScreen } from "@ionic-native/splash-screen";
-
+// pages
 import { HomePage } from "../pages/home/home";
 import { AboutPage } from "../pages/about/about";
 import { MenuPage } from "../pages/menu/menu";
 import { ContactPage } from "../pages/contact/contact";
+import { FavoritesPage } from "../pages/favorites/favorites";
 
 @Component({
   templateUrl: "app.html"
@@ -30,7 +31,8 @@ export class MyApp {
       { title: "Home", icon: "home", component: HomePage },
       { title: "About Us", icon: "information-circle", component: AboutPage },
       { title: "Menu", icon: "list-box", component: MenuPage },
-      { title: "Contact Us", icon: "contact", component: ContactPage }
+      { title: "Contact Us", icon: "contact", component: ContactPage },
+      { title: "Favorites", icon: "heart", component: FavoritesPage }
     ];
   }
 
