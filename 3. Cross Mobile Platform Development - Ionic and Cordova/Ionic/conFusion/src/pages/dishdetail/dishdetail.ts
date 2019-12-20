@@ -1,13 +1,18 @@
+// By Kgotso Koete
+
 import { Component, Inject } from "@angular/core";
 import {
   IonicPage,
   NavController,
   NavParams,
-  ToastController
+  ToastController,
+  ActionSheetController,
+  ModalController
 } from "ionic-angular";
 import { Dish } from "../../shared/dish";
 import { Comment } from "../../shared/comment";
 import { FavoriteProvider } from "../../providers/favorite/favorite";
+import { CommentPage } from "../../pages/comment/comment";
 
 /**
  * Generated class for the DishdetailPage page.
@@ -32,7 +37,9 @@ export class DishdetailPage {
     public navParams: NavParams,
     @Inject("BaseURL") private BaseURL,
     private favoriteservice: FavoriteProvider,
-    private toastCtrl: ToastController
+    private toastCtrl: ToastController,
+    public actionCtrl: ActionSheetController,
+    public modalCtrl: ModalController
   ) {
     this.dish = navParams.get("dish");
     this.favorite = favoriteservice.isFavorite(this.dish.id);
@@ -56,5 +63,57 @@ export class DishdetailPage {
 
   ionViewDidLoad() {
     console.log("ionViewDidLoad DishdetailPage");
+  }
+
+  async presentActionSheet() {
+    let actionSheet = this.actionCtrl.create({
+      title: "Select Actions",
+      buttons: [
+        {
+          text: "Add to Favorites",
+          icon: "heart",
+          handler: () => {
+            let toast = this.toastCtrl
+              .create({
+                message:
+                  "Dish " + this.dish.id + " added as a favorite successfully",
+                duration: 3000
+              })
+              .present();
+
+            this.favoriteservice.addFavorite(this.dish.id);
+          }
+        },
+        {
+          text: "Add a Comment",
+          icon: "text",
+          handler: () => {
+            let modal = this.modalCtrl.create(CommentPage);
+            modal.present();
+            modal.onDidDismiss(data => {
+              console.log(data);
+              this.dish.comments.push(data);
+
+              let toast = this.toastCtrl
+                .create({
+                  message: "Your comment was added successfully",
+                  duration: 3000
+                })
+                .present();
+            });
+          }
+        },
+        {
+          text: "Cancel",
+          icon: "close",
+          role: "cancel",
+          handler: () => {
+            console.log("Cancel clicked");
+          }
+        }
+      ]
+    });
+
+    await actionSheet.present();
   }
 }

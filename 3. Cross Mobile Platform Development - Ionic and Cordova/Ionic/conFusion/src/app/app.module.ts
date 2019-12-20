@@ -12,6 +12,7 @@ import { ContactPage } from "../pages/contact/contact";
 import { DishdetailPage } from "../pages/dishdetail/dishdetail";
 import { FavoritesPage } from "../pages/favorites/favorites";
 import { ReservationPage } from "../pages/reservation/reservation";
+import { CommentPage } from "../pages/comment/comment";
 // Native Components
 import { StatusBar } from "@ionic-native/status-bar";
 import { SplashScreen } from "@ionic-native/splash-screen";
@@ -33,7 +34,8 @@ import { FavoriteProvider } from "../providers/favorite/favorite";
     ContactPage,
     DishdetailPage,
     FavoritesPage,
-    ReservationPage
+    ReservationPage,
+    CommentPage
   ],
   imports: [BrowserModule, IonicModule.forRoot(MyApp), HttpModule],
   bootstrap: [IonicApp],
@@ -45,7 +47,8 @@ import { FavoriteProvider } from "../providers/favorite/favorite";
     ContactPage,
     DishdetailPage,
     FavoritesPage,
-    ReservationPage
+    ReservationPage,
+    CommentPage
   ],
   providers: [
     StatusBar,
