@@ -15,9 +15,10 @@ import { FavoritesPage } from "../pages/favorites/favorites";
 import { ReservationPage } from "../pages/reservation/reservation";
 import { CommentPage } from "../pages/comment/comment";
 import { LoginPage } from "../pages/login/login";
-// Native Components
+// Native features
 import { StatusBar } from "@ionic-native/status-bar";
 import { SplashScreen } from "@ionic-native/splash-screen";
+import { LocalNotifications } from "@ionic-native/local-notifications";
 // Providers
 import { DishProvider } from "../providers/dish/dish";
 import { LeaderProvider } from "../providers/leader/leader";
@@ -68,7 +69,8 @@ import { FavoriteProvider } from "../providers/favorite/favorite";
     PromotionProvider,
     ProcessHttpmsgProvider,
     { provide: "BaseURL", useValue: baseURL },
-    FavoriteProvider
+    FavoriteProvider,
+    LocalNotifications
   ]
 })
 export class AppModule {}
