@@ -1,3 +1,5 @@
+// By Kgotso Koete
+
 import { Component } from "@angular/core";
 import {
   IonicPage,
@@ -87,5 +89,28 @@ export class RegisterPage {
   onSubmit() {
     console.log(this.registerForm.value);
     this.dismiss();
+  }
+
+  getFromLibrary() {
+    const options: CameraOptions = {
+      sourceType: this.camera.PictureSourceType.PHOTOLIBRARY,
+      destinationType: this.camera.DestinationType.FILE_URI,
+      quality: 100,
+      targetHeight: 100,
+      targetWidth: 100,
+      correctOrientation: true,
+      encodingType: this.camera.EncodingType.JPEG,
+      allowEdit: true
+    };
+
+    this.camera.getPicture(options).then(
+      file_uri => {
+        this.image = file_uri;
+        console.log(file_uri);
+      },
+      err => {
+        console.log("Error obtaining picture");
+      }
+    );
   }
 }
