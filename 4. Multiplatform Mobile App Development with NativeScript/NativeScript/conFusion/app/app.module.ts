@@ -5,7 +5,7 @@ import { AppComponent } from "./app.component";
 // Additional modules
 import { HttpClientModule } from "@angular/common/http";
 import { NativeScriptHttpModule } from "nativescript-angular/http";
-
+import { NativeScriptUISideDrawerModule } from "nativescript-ui-sidedrawer/angular";
 // Components
 import { MenuComponent } from "./menu/menu.component";
 import { DishdetailComponent } from "./dishdetail/dishdetail.component";
@@ -27,7 +27,8 @@ import { baseURL } from "./shared/baseurl";
     NativeScriptModule,
     AppRoutingModule,
     NativeScriptHttpModule,
-    HttpClientModule
+    HttpClientModule,
+    NativeScriptUISideDrawerModule
   ],
   declarations: [AppComponent, MenuComponent, DishdetailComponent],
   providers: [
