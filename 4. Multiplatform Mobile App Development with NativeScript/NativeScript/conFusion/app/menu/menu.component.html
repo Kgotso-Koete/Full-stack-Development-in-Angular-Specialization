@@ -2,7 +2,11 @@
 <StackLayout class="page">
   <ListView [items]="dishes" class="list-group" *ngIf="dishes">
     <ng-template let-dish="item">
-      <StackLayout orientation="horizontal" class="list-group-item">
+      <StackLayout
+        orientation="horizontal"
+        class="list-group-item"
+        [nsRouterLink]="['/dishdetail', dish.id]"
+      >
         <Image
           row="0"
           col="0"

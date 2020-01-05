@@ -8,6 +8,7 @@ import { NativeScriptHttpModule } from "nativescript-angular/http";
 
 // Components
 import { MenuComponent } from "./menu/menu.component";
+import { DishdetailComponent } from "./dishdetail/dishdetail.component";
 
 // Shared services
 import { DishService } from "./services/dish.service";
@@ -28,7 +29,7 @@ import { baseURL } from "./shared/baseurl";
     NativeScriptHttpModule,
     HttpClientModule
   ],
-  declarations: [AppComponent, MenuComponent],
+  declarations: [AppComponent, MenuComponent, DishdetailComponent],
   providers: [
     { provide: "baseURL", useValue: baseURL },
     DishService,
