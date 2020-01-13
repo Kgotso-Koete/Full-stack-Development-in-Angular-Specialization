@@ -30,10 +30,34 @@
         <GridLayout
           columns="auto"
           class="sidedrawer-list-item"
+          [class.selected]="isComponentSelected('/about')"
+          (tap)="onNavItemTap('/about')"
+        >
+          <Label
+            col="1"
+            text="About Us"
+            class="sidedrawer-list-item-text"
+          ></Label>
+        </GridLayout>
+        <GridLayout
+          columns="auto"
+          class="sidedrawer-list-item"
           [class.selected]="isComponentSelected('/menu')"
           (tap)="onNavItemTap('/menu')"
         >
           <Label col="1" text="Menu" class="sidedrawer-list-item-text"></Label>
+        </GridLayout>
+        <GridLayout
+          columns="auto"
+          class="sidedrawer-list-item"
+          [class.selected]="isComponentSelected('/contactus')"
+          (tap)="onNavItemTap('/contactus')"
+        >
+          <Label
+            col="1"
+            text="Contact Us"
+            class="sidedrawer-list-item-text"
+          ></Label>
         </GridLayout>
       </StackLayout>
     </ScrollView>
